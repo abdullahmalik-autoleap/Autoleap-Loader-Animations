@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Autoleap Loader Animations
+
+An interactive showcase of 29 polished loader animation variants for the AutoLeap brand. Used by the team to review, compare, and pick the final loader animations for the Autoleap product.
+
+## What's inside
+
+- **17 Loaders** (icon-only): Pulse, Heartbeat, Spin, Trace, Shimmer, Fill-Up, Clock Sweep Fill, Radial Wipe, Echo, Orbit, DNA Helix, Bouncing Corners, Icon Stroke Reveal, Blueprint Grid, Pixel Build, Particle Dissolve, Liquid Morph
+- **12 Logo Intros** (wordmark): Wordmark Shimmer, Wordmark Cascade, Wordmark Pulse, Wordmark Glow, Stroke Reveal, Typewriter Stamp, Ink Bleed, Gravity Letters, Elastic Pop, Inflation, Blur to Focus, Solar Eclipse
+- Clickable variant list matching the reference UI
+- Light / Dark stage tone toggle for previewing on either background
+- Replay button to restart the current animation
+- Every loop is mathematically seamless (yoyo tweens, linear motion, or explicit `tl.set()` reset)
+
+## Stack
+
+- **Next.js** (App Router) + **TypeScript** + **Tailwind CSS v4**
+- **GSAP** + `@gsap/react` — single animation engine for all variants
+- Inline SVG logo components (`AutoleapIcon`, `AutoleapWordmark`) so individual paths / letters can be animated
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/                     # Next.js entry + global CSS (animation keyframes)
+  components/
+    animation-showcase.tsx # Two-pane shell (sidebar + main stage)
+    animation-list.tsx     # Left sidebar variant list
+    animation-stage.tsx    # Center preview with Light/Dark tone toggle
+    animations/            # One file per variant (all GSAP-driven)
+    logo/                  # Inline SVG for the icon and wordmark
+  lib/
+    animations.ts          # Variant registry
+    gsap.ts                # GSAP + useGSAP setup
+    types.ts               # Shared types
+```
 
-## Learn More
+## Adding a new variant
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create `src/components/animations/your-variant.tsx` using `useGSAP` scoped to a ref.
+2. Register it in `src/lib/animations.ts` with a name, description, category (`loaders` or `logo-intros`), and `isLoop: true`.
