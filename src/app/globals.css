@@ -36,17 +36,17 @@ body {
   animation: al-dot 1.8s ease-in-out infinite;
 }
 
-/* Dark stage: remap the dark wordmark color (#3D4242) to a light tone so
-   "Auto" remains readable on the dark container. Green (#00C19D) stays as is. */
-.al-stage-dark [fill="#3D4242"] {
-  fill: #E2E8F0;
+/* Dark stage: remap the dark wordmark color ("Auto") to a very light grey
+   so it stays readable on the dark container. Green ("Leap") stays as-is.
+   Uses explicit classes tagged by AutoleapWordmark + Stroke Reveal so the
+   override is reliable regardless of CSS specificity quirks. */
+.al-stage-dark .al-wm-dark-part {
+  fill: #E5E7EB !important;
+  stroke: #E5E7EB !important;
 }
-.al-stage-dark [stroke="#3D4242"] {
-  stroke: #E2E8F0;
+.al-stage-dark .al-wm-dark-stop-base {
+  stop-color: #E5E7EB !important;
 }
-.al-stage-dark stop[stop-color="#3D4242"] {
-  stop-color: #E2E8F0;
-}
-.al-stage-dark stop[stop-color="#A3ACAE"] {
-  stop-color: #94A3B8;
+.al-stage-dark .al-wm-dark-stop-bright {
+  stop-color: #F3F4F6 !important;
 }

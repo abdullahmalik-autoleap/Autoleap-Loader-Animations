@@ -42,12 +42,12 @@ export function WordmarkShimmer({ replayKey }: AnimationProps) {
       xmlns="http://www.w3.org/2000/svg"
     >
       <defs>
-        <linearGradient id={darkGradientId} x1="-1" y1="0" x2="0" y2="0">
-          <stop offset="0%" stopColor="#3D4242" />
-          <stop offset="44%" stopColor="#3D4242" />
-          <stop offset="50%" stopColor="#A3ACAE" />
-          <stop offset="56%" stopColor="#3D4242" />
-          <stop offset="100%" stopColor="#3D4242" />
+        <linearGradient id={darkGradientId} className="al-wm-dark-gradient" x1="-1" y1="0" x2="0" y2="0">
+          <stop className="al-wm-dark-stop-base" offset="0%" stopColor="#3D4242" />
+          <stop className="al-wm-dark-stop-base" offset="44%" stopColor="#3D4242" />
+          <stop className="al-wm-dark-stop-bright" offset="50%" stopColor="#A3ACAE" />
+          <stop className="al-wm-dark-stop-base" offset="56%" stopColor="#3D4242" />
+          <stop className="al-wm-dark-stop-base" offset="100%" stopColor="#3D4242" />
         </linearGradient>
         <linearGradient id={greenGradientId} x1="-1" y1="0" x2="0" y2="0">
           <stop offset="0%" stopColor="#00C19D" />
